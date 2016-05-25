@@ -61,38 +61,22 @@ $model = new LoginForm();
                 'items' => $navItems,
             ]);
             ?>
-            <?php echo Html::beginForm(Url::to(['/admin']), 'post', ['class' => 'navbar-form navbar-center']) ?>
-            <div class="form-group input-group">
-                <span class="input-group-btn">
-                    <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
-                </span>
-                <?php echo Html::input('text', ['class' => 'form-control', 'placeholder' => 'Search']); ?>
-                <span class="input-group-btn">
-                    <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
-                </span>
-            </div>
-            <?php echo Html::endForm() ?>
-                
-            <div class="">
-                <div class="navbar-header">
-
-                    <form class="navbar-form navbar-center " role="search">
-                        <div class="form-group input-group">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">por cancion
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </button>
-                            </span>
-                            <input type="text" id="txtplaceholder" class="form-control" placeholder="Search..">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>        
-                        </div>
-                    </form>
-
+            <div class="navbar-header">
+                <?php echo Html::beginForm(Url::to(['/admin']), 'get', ['class' => 'navbar-form navbar-center ']) ?>
+                <div class="form-group input-group">
+                    <span class="input-group-btn">
+                        <?php echo Html::submitButton('por cancion <span class="glyphicon glyphicon-chevron-right"></span>', ['class' => 'btn btn-default', 'name' => 'xcancion']); ?>
+                    </span>
+                    <?php
+                    echo Html::input('text', 'buscar', '', ['class' => 'form-control',
+                        'placeholder' => \Yii::t("yii", 'Search'),
+                    ]);
+                    ?>
+                    <span class="input-group-btn">
+                        <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
+                    </span>
                 </div>
+                <?php echo Html::endForm() ?>
             </div>
 
             <?php
