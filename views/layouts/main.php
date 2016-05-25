@@ -12,7 +12,6 @@ use app\models\LoginForm;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-
 ?>
 <?php
 $this->beginPage();
@@ -61,9 +60,32 @@ $model = new LoginForm();
                             </div>
                         </form>
                     </div>
+                    <?php
+                    $navItems = [
+                        ['label' => \Yii::t("yii", \Yii::t("yii", 'Home')), 'url' => ['/site/index']],
+                        ['label' => \Yii::t("yii", \Yii::t("yii", 'About')), 'url' => ['/site/about']],
+                        ['label' => \Yii::t("yii", \Yii::t("yii", 'Contact')), 'url' => ['/site/contact']]
+                    ];
+                    if (Yii::$app->user->isGuest) {
+                        array_push($navItems, ['label' => \Yii::t("yii", \Yii::t("yii", 'Logout')) . ' (' . Yii::$app->user->identity->email . ')',
+                            'url' => ['/site/logout'],
+                            'linkOptions' => ['data-method' => 'post']]
+                        );
+                    } else {
+                        array_push($navItems, ['label' => \Yii::t("yii", \Yii::t("yii", 'Logout')) . ' (' . Yii::$app->user->identity->email . ')',
+                            'url' => ['/site/logout'],
+                            'linkOptions' => ['data-method' => 'post']]
+                        );
+                        array_push($navItems, ['label' => \Yii::t("yii", 'Usuarios'),
+                            'url' => ['/administrador/index'],
+                            'linkOptions' => ['data-method' => 'post']]
+                        );
+                    }
+                    ?>
+
                     <ul class="nav navbar-nav navbar-right">
                         <li class="divider"></li>
-                        <?php if (Yii::$app->user->isGuest): ?>
+<?php if (Yii::$app->user->isGuest): ?>
                             <li class="dropdown" >
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle" >Entrar <span class="glyphicon glyphicon-log-in"></span><b class="caret"></b></a>
                                 <div class="dropdown-menu" >
@@ -80,13 +102,13 @@ $model = new LoginForm();
                                     ?>
                                     <?=
                                     $form->field($model, 'email', ['inputOptions' => [
-                                            'placeholder' => \Yii::t("yii",'Email'),
+                                            'placeholder' => \Yii::t("yii", 'Email'),
                                         ],
                                     ])->label("");
                                     ?>
                                     <?=
                                     $form->field($model, 'password', ['inputOptions' => [
-                                            'placeholder' => \Yii::t("yii",'Password'),
+                                            'placeholder' => \Yii::t("yii", 'Password'),
                                         ],
                                             ]
                                     )->passwordInput()->label("")
@@ -99,18 +121,18 @@ $model = new LoginForm();
                                     ?>
                                     <div class="row">
                                         <a class="small col-lg-8" href="recoverypass">Olvide mi cotrasenia</a>
-                                        <?= Html::a(\Yii::t("yii",'Signup'), ['site/signup/'], ['class' => 'small col-lg-8']) ?>
+    <?= Html::a(\Yii::t("yii", 'Signup'), ['site/signup/'], ['class' => 'small col-lg-8']) ?>
                                     </div> 	
                                     <br />
                                     <div class="form-group">
                                         <div class="col-lg-offset-4 col-lg-2">
-                                            <?= Html::submitInput(\Yii::t("yii",'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+    <?= Html::submitInput(\Yii::t("yii", 'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                                         </div>
                                     </div>
-                                    <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
                                 </div>
                             </li>
-                        <?php
+                            <?php
                         else:
                             echo Nav::widget([
                                 'options' => ['class' => 'navbar-nav navbar-right'],
@@ -118,7 +140,7 @@ $model = new LoginForm();
                                     ['label' => 'Inicio', 'url' => ['/site/index']],
                                     ['label' => 'Canciones', 'url' => ['/site/about']],
                                     ['label' => 'Artistas', 'url' => ['/site/contact']],
-                                    ['label' => 'Acercxxa del sitio', 'url' => ['/site/contact']],
+                                    ['label' => 'Acerca del sitio', 'url' => ['/site/contact']],
                                     [
                                         'label' => 'Perfil',
                                         'items' => [
@@ -133,6 +155,8 @@ $model = new LoginForm();
                         endif;
                         ?>
                     </ul>
+
+
                 </div>
             </nav>
 
@@ -149,7 +173,7 @@ $model = new LoginForm();
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ])
                 ?>
-                <?= $content ?>
+<?= $content ?>
             </div>
         </div>
 
@@ -161,7 +185,7 @@ $model = new LoginForm();
             </div>
         </footer>
 
-        <?php $this->endBody() ?>
+<?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

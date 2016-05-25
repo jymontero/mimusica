@@ -16,7 +16,7 @@ use yii\filters\AccessControl;
 /**
  * UsuarioController implements the CRUD actions for Usuario model.
  */
-class UsuarioController extends Controller {
+class AdminController extends Controller {
 
     public function behaviors() {
         return [
@@ -68,7 +68,7 @@ class UsuarioController extends Controller {
                 ->offset($pagination->offset)
                 ->limit($pagination->limit)
                 ->all();
-        return $this->render('usuario',[
+        return $this->render('index',[
             'usuario'=>$usuarios,
             'pagination'=>$pagination,
         ]);

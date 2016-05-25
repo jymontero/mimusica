@@ -15,13 +15,12 @@ use app\models\Tipousuario;
  * @property string $genero
  * @property string $fecha_nacimiento
  * @property integer $id_tipo_usuario
- *
  * @property Tipousuario $idTipoUsuario
  */
+
 class 
 Usuario extends \yii\db\ActiveRecord
 {   
-    
     public $password_repeat;
     public $nombre_apellido;
     
@@ -37,7 +36,6 @@ Usuario extends \yii\db\ActiveRecord
             ['email','email'],
             [['email', 'nombres', 'apellidos','apodo'], 'string', 'max' => 50],
             [['password'], 'string', 'min' => 8, 'max' => 20],
-            
         ];
     }
 

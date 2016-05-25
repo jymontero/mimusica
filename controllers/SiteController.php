@@ -95,7 +95,7 @@ class SiteController extends Controller {
         ]);
     }
 
-    public function actionSignup() {
+    public function actionRegistro() {
 //        $model = new SignupForm();
         $model = new Usuario();
         
@@ -108,7 +108,7 @@ class SiteController extends Controller {
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index', 'id' => $model->id_tusuario]);
         } else {
-            return $this->render('signup', [
+            return $this->render('registro', [
                         'model' => $model,
             ]);
         }
