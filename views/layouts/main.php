@@ -39,128 +39,61 @@ $model = new LoginForm();
                     'style' => ' color: blue;;',
                 ],
             ]);
+            $navItems = [
+                ['label' => \Yii::t("yii", \Yii::t("yii", 'Home')), 'url' => ['/site/index']],
+                ['label' => \Yii::t("yii", \Yii::t("yii", 'About')), 'url' => ['/site/about']],
+                ['label' => \Yii::t("yii", \Yii::t("yii", 'Contact')), 'url' => ['/site/contact']]
+            ];
+            if (Yii::$app->user->isGuest) {
+                
+            } else {
+                array_push($navItems, ['label' => \Yii::t("yii", \Yii::t("yii", 'Logout')) . ' (' . Yii::$app->user->identity->email . ')',
+                    'url' => ['/site/logout'],
+                    'linkOptions' => ['data-method' => 'post']]
+                );
+                array_push($navItems, ['label' => \Yii::t("yii", 'admin'),
+                    'url' => ['/administrador/index'],
+                    'linkOptions' => ['data-method' => 'post']]
+                );
+            }
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav'],
+                'items' => $navItems,
+            ]);
             ?>
+            <?php echo Html::beginForm(Url::to(['/admin']), 'post', ['class' => 'navbar-form navbar-center']) ?>
+            <div class="form-group input-group">
+                <span class="input-group-btn">
+                    <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
+                </span>
+                <?php echo Html::input('text', ['class' => 'form-control', 'placeholder' => 'Search']); ?>
+                <span class="input-group-btn">
+                    <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
+                </span>
+            </div>
+            <?php echo Html::endForm() ?>
 
-            <nav class="">
-                <div class="">
-                    <div class="navbar-header">
-                        <form class="navbar-form navbar-center " role="search">
-                            <div class="form-group input-group">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">por cancion
-                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                    </button>
-                                </span>
-                                <input type="text" id="txtplaceholder" class="form-control" placeholder="Search..">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>        
-                            </div>
-                        </form>
-                    </div>
-                    <?php
-                    $navItems = [
-                        ['label' => \Yii::t("yii", \Yii::t("yii", 'Home')), 'url' => ['/site/index']],
-                        ['label' => \Yii::t("yii", \Yii::t("yii", 'About')), 'url' => ['/site/about']],
-                        ['label' => \Yii::t("yii", \Yii::t("yii", 'Contact')), 'url' => ['/site/contact']]
-                    ];
-                    if (Yii::$app->user->isGuest) {
-                        array_push($navItems, ['label' => \Yii::t("yii", \Yii::t("yii", 'Logout')) . ' (' . Yii::$app->user->identity->email . ')',
-                            'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']]
-                        );
-                    } else {
-                        array_push($navItems, ['label' => \Yii::t("yii", \Yii::t("yii", 'Logout')) . ' (' . Yii::$app->user->identity->email . ')',
-                            'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']]
-                        );
-                        array_push($navItems, ['label' => \Yii::t("yii", 'Usuarios'),
-                            'url' => ['/administrador/index'],
-                            'linkOptions' => ['data-method' => 'post']]
-                        );
-                    }
-                    ?>
+            <div class="">
+                <div class="navbar-header">
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="divider"></li>
-<?php if (Yii::$app->user->isGuest): ?>
-                            <li class="dropdown" >
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle" >Entrar <span class="glyphicon glyphicon-log-in"></span><b class="caret"></b></a>
-                                <div class="dropdown-menu" >
-                                    <?php
-                                    $form = ActiveForm::begin([
-                                                'id' => 'login-form',
-                                                'enableAjaxValidation' => true,
-                                                'options' => ['class' => 'navbar-form navbar-center '],
-                                                'fieldConfig' => [
-                                                    'template' => "<div class=\" \">{input}</div>\n<div class=\"\">{error}</div>",
-                                                ],
-                                                'action' => ['/site/login'],
-                                    ]);
-                                    ?>
-                                    <?=
-                                    $form->field($model, 'email', ['inputOptions' => [
-                                            'placeholder' => \Yii::t("yii", 'Email'),
-                                        ],
-                                    ])->label("");
-                                    ?>
-                                    <?=
-                                    $form->field($model, 'password', ['inputOptions' => [
-                                            'placeholder' => \Yii::t("yii", 'Password'),
-                                        ],
-                                            ]
-                                    )->passwordInput()->label("")
-                                    ?>
-
-                                    <?=
-                                    $form->field($model, 'rememberMe')->checkbox([
-                                        'template' => "<div class=\"\">{input} {label}</div>",
-                                    ])
-                                    ?>
-                                    <div class="row">
-                                        <a class="small col-lg-8" href="recoverypass">Olvide mi cotrasenia</a>
-    <?= Html::a(\Yii::t("yii", 'Signup'), ['site/signup/'], ['class' => 'small col-lg-8']) ?>
-                                    </div> 	
-                                    <br />
-                                    <div class="form-group">
-                                        <div class="col-lg-offset-4 col-lg-2">
-    <?= Html::submitInput(\Yii::t("yii", 'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                                        </div>
-                                    </div>
-    <?php ActiveForm::end(); ?>
-                                </div>
-                            </li>
-                            <?php
-                        else:
-                            echo Nav::widget([
-                                'options' => ['class' => 'navbar-nav navbar-right'],
-                                'items' => [
-                                    ['label' => 'Inicio', 'url' => ['/site/index']],
-                                    ['label' => 'Canciones', 'url' => ['/site/about']],
-                                    ['label' => 'Artistas', 'url' => ['/site/contact']],
-                                    ['label' => 'Acerca del sitio', 'url' => ['/site/contact']],
-                                    [
-                                        'label' => 'Perfil',
-                                        'items' => [
-                                            'label' => 'Inicio de sesion',
-                                            Html::beginForm(['/site/logout'], 'post') . Html::submitButton(
-                                                    'Logout (' . Yii::$app->user->identity->email . ')', ['class' => 'btn btn-link']
-                                            ) . Html::endForm(),
-                                        ]
-                                    ]
-                                ],]);
-
-                        endif;
-                        ?>
-                    </ul>
-
+                    <form class="navbar-form navbar-center " role="search">
+                        <div class="form-group input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">por cancion
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </button>
+                            </span>
+                            <input type="text" id="txtplaceholder" class="form-control" placeholder="Search..">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>        
+                        </div>
+                    </form>
 
                 </div>
-            </nav>
-
-
+            </div>
 
             <?php
             NavBar::end();
@@ -173,7 +106,7 @@ $model = new LoginForm();
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ])
                 ?>
-<?= $content ?>
+                <?= $content ?>
             </div>
         </div>
 
@@ -185,7 +118,7 @@ $model = new LoginForm();
             </div>
         </footer>
 
-<?php $this->endBody() ?>
+        <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

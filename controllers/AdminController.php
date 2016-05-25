@@ -58,7 +58,7 @@ class AdminController extends Controller {
                     'paramet' => Yii::$app->request->queryParams,
         ]);
         
-         $query = Usuario::find();
+        $query = Usuario::find();
         
         $pagination = new Pagination([
             'defaultPageSize'=>3,
