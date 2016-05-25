@@ -72,7 +72,7 @@ $model = new LoginForm();
                 </span>
             </div>
             <?php echo Html::endForm() ?>
-
+                
             <div class="">
                 <div class="navbar-header">
 
