@@ -10,6 +10,7 @@ use app\assets\AppAsset;
 use yii\bootstrap\ActiveForm;
 use app\models\LoginForm;
 use yii\helpers\Url;
+use app\models\UsuarioSearch;
 
 AppAsset::register($this);
 ?>
@@ -36,16 +37,29 @@ $model = new LoginForm();
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-default navbar-fixed-top navbar-inverse',
-                    'style' => ' color: blue;;',
+                    'style' => ' color: red',
                 ],
             ]);
+
+            $model = new UsuarioSearch;
             $navItems = [
                 ['label' => \Yii::t("yii", \Yii::t("yii", 'Home')), 'url' => ['/site/index']],
                 ['label' => \Yii::t("yii", \Yii::t("yii", 'About')), 'url' => ['/site/about']],
-                ['label' => \Yii::t("yii", \Yii::t("yii", 'Contact')), 'url' => ['/site/contact']]
+                ['label' => \Yii::t("yii", \Yii::t("yii", 'Contact')), 'url' => ['/site/contact']],
+//                '<div class="navbar-form navbar-"><div class="form-group">'
+//                . '<span class = "input-group">'
+//                . Html::beginForm(Url::to(['/admin']), 'get', ['class' => ''])
+//                . Html::submitButton('por cancion <span class="glyphicon glyphicon-chevron-right"></span>', ['class' => 'btn btn-default', 'name' => 'xcancion'])
+//                . Html::endForm() . '</span>'
+//                . '<span class = "input-group">'
+//                . Html::beginForm(Url::to(['/admin']), 'get', ['class' => ''])
+//                . Html::activeTextInput($model, 'nombre_apellido', ['placeholder' => \Yii::t("yii", 'Search'), 'class' => 'form-control'])
+//                . Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-primary'])
+//                . Html::endForm() . '</span>' . '</div></div>',
             ];
             if (Yii::$app->user->isGuest) {
-                
+//                array_push($navItems, ''
+//                );
             } else {
                 array_push($navItems, ['label' => \Yii::t("yii", \Yii::t("yii", 'Logout')) . ' (' . Yii::$app->user->identity->email . ')',
                     'url' => ['/site/logout'],
@@ -61,22 +75,31 @@ $model = new LoginForm();
                 'items' => $navItems,
             ]);
             ?>
-            <div class="navbar-header">
-                <?php echo Html::beginForm(Url::to(['/admin']), 'get', ['class' => 'navbar-form navbar-center ']) ?>
-                <div class="form-group input-group">
+
+            <div class="navbar-form navbar-center ">
+                <div class="input-group">
                     <span class="input-group-btn">
-                        <?php echo Html::submitButton('por cancion <span class="glyphicon glyphicon-chevron-right"></span>', ['class' => 'btn btn-default', 'name' => 'xcancion']); ?>
+                        <?php
+                        echo Html::beginForm(Url::to(['/admin']), 'post', ['enableAjaxValidation' => 'true'])
+                        . '<div class="input-group">'
+                        . Html::submitButton('por cancion <span class="glyphicon glyphicon-chevron-right"></span>', ['class' => 'btn btn-default', 'name' => 'xcancion'])
+                        . '</div>'
+                        . Html::endForm();
+                        ?>
                     </span>
-                    <?php
-                    echo Html::input('text', 'buscar', '', ['class' => 'form-control',
-                        'placeholder' => \Yii::t("yii", 'Search'),
-                    ]);
-                    ?>
-                    <span class="input-group-btn">
-                        <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
-                    </span>
+                    <?php echo Html::beginForm(Url::to(['/admin']), 'get', ['class' => ' ']); ?>
+                    <div class="input-group">
+                        <?php
+                        echo Html::activeTextInput($model, 'nombre_apellido', ['class' => 'form-control',
+                            'placeholder' => \Yii::t("yii", 'Search'),
+                        ]);
+                        ?>
+                        <span class="input-group-btn">
+                            <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
+                        </span>
+                    </div>
+                    <?php echo Html::endForm() ?>
                 </div>
-                <?php echo Html::endForm() ?>
             </div>
 
             <?php

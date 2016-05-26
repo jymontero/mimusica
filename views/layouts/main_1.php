@@ -108,55 +108,56 @@ $model = new LoginForm();
                                     <?php ActiveForm::end(); ?>
                                 </div>
                             </li>
-                        <?php else: 
-                                    echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => [
-                    ['label' => 'Inicio', 'url' => ['/site/index']],
-                    ['label' => 'Canciones', 'url' => ['/site/about']],
-                    ['label' => 'Artistas', 'url' => ['/site/contact']],
-                    ['label' => 'Acerca del sitio', 'url' => ['/site/contact']],
-
-                            [
-                                'label' => 'Perfil',
-                                'items' => [
-                                    'label' => 'Inicio de sesion', 
-                                    Html::beginForm(['/site/logout'], 'post') . Html::submitButton(
-                                    'Logout (' . Yii::$app->user->identity->email . ')', ['class' => 'btn btn-link']
-                            ) . Html::endForm() . '</li>',
-                                ]
-                            ]
-
-                            ],]);
-                            
-                        endif; ?>
-                    </ul>
-                </div>
-            </nav>
-
-<!--                            echo Nav::widget([
+                        <?php
+                        else:
+                            echo Nav::widget([
                                 'options' => ['class' => 'navbar-nav navbar-right'],
                                 'items' => [
                                     ['label' => 'Inicio', 'url' => ['/site/index']],
                                     ['label' => 'Canciones', 'url' => ['/site/about']],
                                     ['label' => 'Artistas', 'url' => ['/site/contact']],
-                                    ['label' => 'Acercxxa del sitio', 'url' => ['/site/contact']],
+                                    ['label' => 'Acerca del sitio', 'url' => ['/site/contact']],
                                     [
                                         'label' => 'Perfil',
                                         'items' => [
                                             'label' => 'Inicio de sesion',
-                                            Html::beginForm(['/site/login2'], 'post',['class' => 'navbar-form navbar-center ','enableAjaxValidation' => true,]) .
-                                                Html::activeInput('input',$model,'email', ['placeholder' => 'btn btn-link']
-                                                    ) . 
-                                                Html::activeInput('email',$model,'email', ['placeholder' => 'btn btn-link']
-                                                    ) .
-                                                Html::submitButton(
-                                                    'Entrar', ['class' => 'btn btn-link']
-                                                    ) . 
-                                            Html::endForm()
+                                            Html::beginForm(['/site/logout'], 'post')
+                                            . Html::submitButton(
+                                                    'Logout (' . Yii::$app->user->identity->email . ')', ['class' => 'btn btn-link']
+                                            ) . Html::endForm() . '</li>',
                                         ]
                                     ]
-                                ],]);-->
+                                ],]);
+
+                        endif;
+                        ?>
+                    </ul>
+                </div>
+            </nav>
+
+            <!--                            echo Nav::widget([
+                                            'options' => ['class' => 'navbar-nav navbar-right'],
+                                            'items' => [
+                                                ['label' => 'Inicio', 'url' => ['/site/index']],
+                                                ['label' => 'Canciones', 'url' => ['/site/about']],
+                                                ['label' => 'Artistas', 'url' => ['/site/contact']],
+                                                ['label' => 'Acercxxa del sitio', 'url' => ['/site/contact']],
+                                                [
+                                                    'label' => 'Perfil',
+                                                    'items' => [
+                                                        'label' => 'Inicio de sesion',
+                                                        Html::beginForm(['/site/login2'], 'post',['class' => 'navbar-form navbar-center ','enableAjaxValidation' => true,]) .
+                                                            Html::activeInput('input',$model,'email', ['placeholder' => 'btn btn-link']
+                                                                ) . 
+                                                            Html::activeInput('email',$model,'email', ['placeholder' => 'btn btn-link']
+                                                                ) .
+                                                            Html::submitButton(
+                                                                'Entrar', ['class' => 'btn btn-link']
+                                                                ) . 
+                                                        Html::endForm()
+                                                    ]
+                                                ]
+                                            ],]);-->
 
 
             <?php

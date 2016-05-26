@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="usuario-search">
+<div class="usuario-ssearch">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -23,15 +23,15 @@ use yii\widgets\ActiveForm;
 
     <?php //  $form->field($model, 'apellidos') ?>
 
-    <?php //  $form->field($model, 'tipo') ?>
+    <?php //   $form->field($model, 'tipo') ?>
 
     <?= $form->field($model, 'nombre_apellido') ?>
 
     <?php // echo $form->field($model, 'id_tipo_usuario') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton(\Yii::t("yii",'Search'), ['class' => 'btn btn-primary']) ?>
+        <?php // echo Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
