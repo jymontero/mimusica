@@ -35,7 +35,7 @@ return [
     'RememberMe' => 'Recuerdame',
     'Signup' => 'Regístrate',
     'Signin' => 'Registrarse',
-    'Search' => 'Buscar',
+    'Search by song or artist' => 'Buscar por canción o artista',
     'Type' => 'Tipo',
     'Users' => 'Usuarios',
     'Update user' => 'Actualizar usuario',

@@ -46,16 +46,6 @@ $model = new LoginForm();
                 ['label' => \Yii::t("yii", \Yii::t("yii", 'Home')), 'url' => ['/site/index']],
                 ['label' => \Yii::t("yii", \Yii::t("yii", 'About')), 'url' => ['/site/about']],
                 ['label' => \Yii::t("yii", \Yii::t("yii", 'Contact')), 'url' => ['/site/contact']],
-//                '<div class="navbar-form navbar-"><div class="form-group">'
-//                . '<span class = "input-group">'
-//                . Html::beginForm(Url::to(['/admin']), 'get', ['class' => ''])
-//                . Html::submitButton('por cancion <span class="glyphicon glyphicon-chevron-right"></span>', ['class' => 'btn btn-default', 'name' => 'xcancion'])
-//                . Html::endForm() . '</span>'
-//                . '<span class = "input-group">'
-//                . Html::beginForm(Url::to(['/admin']), 'get', ['class' => ''])
-//                . Html::activeTextInput($model, 'nombre_apellido', ['placeholder' => \Yii::t("yii", 'Search'), 'class' => 'form-control'])
-//                . Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-primary'])
-//                . Html::endForm() . '</span>' . '</div></div>',
             ];
             if (Yii::$app->user->isGuest) {
 //                array_push($navItems, ''
@@ -71,35 +61,24 @@ $model = new LoginForm();
                 );
             }
             echo Nav::widget([
-                'options' => ['class' => 'navbar-nav'],
+                'options' => ['class' => 'nav navbar-nav '],
                 'items' => $navItems,
             ]);
             ?>
 
             <div class="navbar-form navbar-center ">
+                <?php echo Html::beginForm(Url::to(['/admin']), 'get', ['class' => ' ']); ?>
                 <div class="input-group">
+                    <?php
+                    echo Html::activeTextInput($model, 'nombre_apellido', ['class' => 'form-control','style'=>'min-width:250px',
+                        'placeholder' => \Yii::t("yii", 'Search by song or artist'),
+                    ]);
+                    ?>
                     <span class="input-group-btn">
-                        <?php
-                        echo Html::beginForm(Url::to(['/admin']), 'post', ['enableAjaxValidation' => 'true'])
-                        . '<div class="input-group">'
-                        . Html::submitButton('por cancion <span class="glyphicon glyphicon-chevron-right"></span>', ['class' => 'btn btn-default', 'name' => 'xcancion'])
-                        . '</div>'
-                        . Html::endForm();
-                        ?>
+                        <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
                     </span>
-                    <?php echo Html::beginForm(Url::to(['/admin']), 'get', ['class' => ' ']); ?>
-                    <div class="input-group">
-                        <?php
-                        echo Html::activeTextInput($model, 'nombre_apellido', ['class' => 'form-control',
-                            'placeholder' => \Yii::t("yii", 'Search'),
-                        ]);
-                        ?>
-                        <span class="input-group-btn">
-                            <?php echo Html::submitButton('<span class="glyphicon glyphicon-search"></span>', ['class' => 'btn btn-default']); ?>
-                        </span>
-                    </div>
-                    <?php echo Html::endForm() ?>
                 </div>
+                <?php echo Html::endForm() ?>
             </div>
 
             <?php
