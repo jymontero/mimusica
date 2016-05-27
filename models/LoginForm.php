@@ -32,6 +32,13 @@ class LoginForm extends Model
             ['password', 'validatePassword'],
         ];
     }
+    public function attributeLabels($names = null, $except = array()) {
+        return [
+            'email' =>\Yii::t("yii",'Email'),
+            'password' => \Yii::t('yii', 'Password'),
+            'rememberMe' => \Yii::t("yii",'RememberMe'),
+            ];
+    }
 
     /**
      * Validates the password.

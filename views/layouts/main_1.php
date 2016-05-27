@@ -43,7 +43,6 @@ $model = new LoginForm();
             <nav class="">
                 <div class="">
                     <div class="navbar-header">
-
                         <form class="navbar-form navbar-center " role="search">
                             <div class="form-group input-group">
                                 <span class="input-group-btn">
@@ -60,6 +59,7 @@ $model = new LoginForm();
                             </div>
                         </form>
                     </div>
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <li class="divider"></li>
                         <?php if (Yii::$app->user->isGuest): ?>
