@@ -26,25 +26,25 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => false,
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.live.com',
-                'username' => 'andersonb@hotmail.es ',
-                'password' => '08b06p1991a', 
-                'port' => '465',
-//                'port' => '587',
-                'encryption' => 'tls',
-            ],
+//            'useFileTransport' => false,
 //            'transport' => [
 //                'class' => 'Swift_SmtpTransport',
-//                'host' => 'smtp.gmail.com',
-//                'username' => 'mimusica.com.2016@gmail.com',
-//                'password' => 'M1mu51c4#',
+//                'host' => 'smtp.live.com',
+//                'username' => 'andersonb@hotmail.es ',
+//                'password' => '08b06p1991a', 
 //                'port' => '465',
 ////                'port' => '587',
 //                'encryption' => 'tls',
 //            ],
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'mimusica.com.2016@gmail.com',
+                'password' => 'M1mu51c4#',
+//                'port' => '465',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
