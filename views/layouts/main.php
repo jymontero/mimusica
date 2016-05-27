@@ -48,17 +48,17 @@ $model = new LoginForm();
             ];
             if (!Yii::$app->user->isGuest) {
 
-                array_push($navItems, ['label' => \Yii::t("yii", 'Lista Usuarios'),
+                array_push($navItems, ['label' => \Yii::t("yii", 'Users'),
                     'url' => ['/admin/index'],
                     'linkOptions' => ['data-method' => 'post']]
                 );
                 array_push($navItems, [
                     'label' => 'Perfil',
                     'items' => [
-                        'label' => \Yii::t("yii", 'Perfil'),
+                        'label' => \Yii::t("yii", 'Profile'),
                         Html::beginForm(['/site/logout'], 'post')
                         . Html::submitButton(
-                                'Logout (' . Yii::$app->user->identity->email . ')', ['class' => 'btn btn-link']
+                                \Yii::t("yii", 'Logout').' (' . Yii::$app->user->identity->email . ')', ['class' => 'btn btn-link']
                         ) . Html::endForm() . '</li>',
                     ]
                         ]
@@ -91,7 +91,7 @@ $model = new LoginForm();
                 <li class="divider"></li>
                 <?php if (Yii::$app->user->isGuest): ?>
                     <li class="dropdown" >
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" >Entrar <span class="glyphicon glyphicon-log-in"></span><b class="caret"></b></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" ><?= \Yii::t("yii", 'Login') ?> <span class="glyphicon glyphicon-log-in"></span><b class="caret"></b></a>
                         <div class="dropdown-menu" >
                             <?php
                             $form = ActiveForm::begin([
@@ -107,13 +107,13 @@ $model = new LoginForm();
                             ?>
                             <?=
                             $form->field($model, 'email', ['inputOptions' => [
-                                    'placeholder' => 'correo electronico',
+                                    'placeholder' => \Yii::t("yii", 'Email'),
                                 ],
                             ])->label("");
                             ?>
                             <?=
                             $form->field($model, 'password', ['inputOptions' => [
-                                    'placeholder' => 'Contraseña',
+                                    'placeholder' => \Yii::t("yii", 'Password'),
                                 ],
                                     ]
                             )->passwordInput()->label("")
@@ -125,7 +125,7 @@ $model = new LoginForm();
                             ])
                             ?>
                             <div class="row">
-                                <a class="small col-lg-8" href="recoverypass">Olvide mi cotrasenia</a>
+                                <a class="small col-lg-8" href="recoverypass"><?= \Yii::t("yii", 'I forgot my password') ?></a>
                                 <a class="small col-lg-8" href="#"><?= \Yii::t("yii", 'Signup') ?></a>
                             </div> 	
                             <br />
@@ -158,7 +158,7 @@ $model = new LoginForm();
 
         <footer class="footer">
             <div class="container">
-                <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+                <p class="pull-left">&copy; Mimusica <?= date('Y') ?></p>
 
                 <p class="pull-right"><?= Yii::powered() ?></p>
             </div>

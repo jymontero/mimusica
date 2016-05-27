@@ -11,9 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => \Yii::t("yii",'Users'), 'url' => ['
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuario-create">
-
     <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

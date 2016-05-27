@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Profile' => 'Perfil',
+    'I forgot my password' => 'Olvidé mi contraseña',
     'About' => 'Acerca de',
     'By song' => 'Por canción',
     'Contact' => 'Contactenos',
